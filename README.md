@@ -73,9 +73,3 @@ docker stop node_exporter
 ├── grafana/provisioning/datasources/prometheus.yml
 └── screenshots/
 ```
-
-## Что дальше
-
-- [ ] Alertmanager для уведомлений в Telegram/email
-- [ ] Запуск стека в Kubernetes (kind + Helm)
-- [ ] CI: проверка YAML в GitHub Actions
