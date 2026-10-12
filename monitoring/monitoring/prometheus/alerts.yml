@@ -1,0 +1,20 @@
+groups:
+  - name: node-alerts
+    rules:
+      - alert: InstanceDown
+        expr: up{job="node"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Узел {{ $labels.instance }} недоступен"
+          description: "Узел не отвечает более 1 минуты."
+
+      - alert: HighCPU
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100) > 85
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Высокая загрузка CPU на {{ $labels.instance }}"
+          description: "CPU выше 85% более 2 минут."
